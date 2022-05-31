@@ -9,12 +9,17 @@ import Aleatorio from "./components/basicos/Aleatorio";
 import Primeiro from './components/basicos/Primeiro'
 import ComParametro from './components/basicos/ComParametro'
 import Fragmento from './components/basicos/Fragmento'
+import ListaAlunos from "./components/repeticao/ListaAlunos";
 
 export default _ =>
     <div className="App">
         <h1>Fundamento React</h1>
 
         <div className="Cards">
+            <Card titulo="#06 - Repeticao" color="#FF4C65">
+                <ListaAlunos />
+            </Card>
+
             <Card titulo="#05 - Componente com Filhos" color="#00C8F8">
                 <Familia sobrenome="Silva">
                     <FamiliaMembro nome="Pedro" />
