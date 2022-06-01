@@ -21,8 +21,7 @@ export default _ =>
         <div className="Cards">
             <Card titulo="#08 - Renderização Condicional" color="#982395">
                 <ParOuImpar numero={21}/>
-                <UsuarioInfo usuario={{nome: 'Fernando'}} />
-                <UsuarioInfo usuario={{email: 'fer@nando.com'}} />
+                <UsuarioInfo usuario={{nome: 'Fernando'}} />                
             </Card>
 
             <Card titulo="#07 - Desafio Repetição" color="#3A9AD9">
