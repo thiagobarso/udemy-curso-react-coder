@@ -16,6 +16,7 @@ import UsuarioInfo from "./components/condicional/UsuarioInfo";
 import DiretaPai from "./components/comunicacao/DiretaPai";
 import IndiretaPai from "./components/comunicacao/IndiretaPai";
 import InputComp from "./components/formulario/Input";
+import Contador from "./components/contador/Contador";
 
 export default _ =>
     <div className="App">
@@ -23,8 +24,12 @@ export default _ =>
 
         <div className="Cards">
 
+            <Card titulo="#12 - Contador" color="#424242">
+                <Contador numeroInicial={10} />
+            </Card>
+
             <Card titulo="#11 - Componente Controlado (Input)" color="#E45F56">
-               <InputComp />
+                <InputComp />
             </Card>
 
             <Card titulo="#10 - Comunicação Indireta" color="#8BAD39">
