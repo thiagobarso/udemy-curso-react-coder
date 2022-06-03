@@ -3,10 +3,8 @@ import './Button.css'
 
 const Button = (props) => {
     return (
-        <div>
-            <button className="button">{props.label}</button>
-        </div>
-    )
+        <button className="button">{props.label}</button>
+    );
 }
 
 export default Button;
