@@ -1,17 +1,14 @@
-import './index.css'
-import React from 'react'
+import React from 'react';
 import ReactDOM from "react-dom/client";
 
 import Calculator from './main/Calculator';
+import App from './views/App';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
     <React.StrictMode>
-    <div>
-        <h1>Calculator</h1>
-        <Calculator />
-    </div>
+        <App />
     </React.StrictMode>
 );
 
