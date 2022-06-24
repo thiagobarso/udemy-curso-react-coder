@@ -1,5 +1,3 @@
-import { urlToHttpOptions } from "url"
-
 export default class Cliente {
     #id: string
     #nome: string
