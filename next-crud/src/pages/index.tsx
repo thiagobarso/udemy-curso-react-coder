@@ -26,7 +26,7 @@ export default function Home() {
     console.log(`Excluir ${cliente.nome}`)
   }
 
-  function novoCliente(cliente: Cliente) {
+  function novoCliente() {
     setCliente(Cliente.vazio())
     setVisivel('form')
 
@@ -49,7 +49,7 @@ export default function Home() {
         {visivel === 'tabela' ? (
           <>
             <div className="flex justify-end">
-              <Botao cor="green" className="mb-4" onClick={() => setVisivel('form')}>Novo Cliente</Botao>
+              <Botao cor="green" className="mb-4" onClick={novoCliente}>Novo Cliente</Botao>
             </div>
             <Tabela clientes={clientes}
               clienteSelecionado={clienteSelecionado}
