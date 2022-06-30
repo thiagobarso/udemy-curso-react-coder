@@ -17,16 +17,22 @@ export default class Todo extends Component {
         this.handleRemove = this.handleRemove.bind(this)
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
         this.handleMarkAsPedding = this.handleMarkAsPedding.bind(this)
+        this.handleSearch = this.handleSearch.bind(this)
 
         this.refresh()
     }
 
-    refresh() {
-        axios.get(`${URL}?sort=createdAt`)
+    refresh(description = '') {
+        const search = description ? `&description__regex=/${description}/` : ''    
+        axios.get(`${URL}?sort=-createdAt${search}`)
             .then(resp => {
                 console.log(resp.data)
-                this.setState({ ...this.state, description: '', list: resp.data })
+                this.setState({ ...this.state, description, list: resp.data })
             })
+    }
+
+    handleSearch(){
+        this.refresh(this.state.description)
     }
 
     handleChange(e) {
@@ -42,17 +48,17 @@ export default class Todo extends Component {
 
     handleRemove(todo) {
         axios.delete(`${URL}/${todo._id}`)
-            .then(resp => this.refresh())
+            .then(resp => this.refresh(this.state.description))
     }
     
     handleMarkAsDone(todo){
         axios.put(`${URL}/${todo._id}`, {...todo, done:true})
-        .then(resp => this.refresh())
+        .then(resp => this.refresh(this.state.description))
     }
 
     handleMarkAsPedding(todo){
         axios.put(`${URL}/${todo._id}`, {...todo, done:false})
-        .then(resp => this.refresh())
+        .then(resp => this.refresh(this.state.description))
     }
 
     render() {
@@ -62,7 +68,8 @@ export default class Todo extends Component {
                 <TodoForm
                     description={this.state.description}
                     handleAdd={this.handleAdd}
-                    handleChange={this.handleChange} />
+                    handleChange={this.handleChange} 
+                    handleSearch={this.handleSearch} />
                 <TodoList 
                     list={this.state.list}
                     handleRemove={this.handleRemove}
