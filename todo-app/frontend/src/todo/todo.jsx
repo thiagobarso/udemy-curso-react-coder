@@ -18,12 +18,13 @@ export default class Todo extends Component {
         this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
         this.handleMarkAsPedding = this.handleMarkAsPedding.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
+        this.handleClear = this.handleClear.bind(this)
 
         this.refresh()
     }
 
     refresh(description = '') {
-        const search = description ? `&description__regex=/${description}/` : ''    
+        const search = description ? `&description__regex=/${description}/` : ''
         axios.get(`${URL}?sort=-createdAt${search}`)
             .then(resp => {
                 console.log(resp.data)
@@ -31,7 +32,7 @@ export default class Todo extends Component {
             })
     }
 
-    handleSearch(){
+    handleSearch() {
         this.refresh(this.state.description)
     }
 
@@ -50,15 +51,19 @@ export default class Todo extends Component {
         axios.delete(`${URL}/${todo._id}`)
             .then(resp => this.refresh(this.state.description))
     }
-    
-    handleMarkAsDone(todo){
-        axios.put(`${URL}/${todo._id}`, {...todo, done:true})
-        .then(resp => this.refresh(this.state.description))
+
+    handleMarkAsDone(todo) {
+        axios.put(`${URL}/${todo._id}`, { ...todo, done: true })
+            .then(resp => this.refresh(this.state.description))
     }
 
-    handleMarkAsPedding(todo){
-        axios.put(`${URL}/${todo._id}`, {...todo, done:false})
-        .then(resp => this.refresh(this.state.description))
+    handleMarkAsPedding(todo) {
+        axios.put(`${URL}/${todo._id}`, { ...todo, done: false })
+            .then(resp => this.refresh(this.state.description))
+    }
+
+    handleClear() {
+        this.refresh()
     }
 
     render() {
@@ -68,9 +73,10 @@ export default class Todo extends Component {
                 <TodoForm
                     description={this.state.description}
                     handleAdd={this.handleAdd}
-                    handleChange={this.handleChange} 
-                    handleSearch={this.handleSearch} />
-                <TodoList 
+                    handleChange={this.handleChange}
+                    handleSearch={this.handleSearch}
+                    handleClear={this.handleClear} />
+                <TodoList
                     list={this.state.list}
                     handleRemove={this.handleRemove}
                     handleMarkAsDone={this.handleMarkAsDone}
